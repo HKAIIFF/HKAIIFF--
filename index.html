@@ -1,1879 +1,720 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WMC世界軍推錦標賽 - 投資人項目介紹</title>
+    <title>HKAIIFF - Hong Kong AI International Film Festival</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    },
+                    colors: {
+                        black: '#1a1a1a', 
+                        offblack: '#222222',
+                        white: '#ffffff',
+                        offwhite: '#f9f9f9',
+                        gray: {
+                            100: '#f3f3f3',
+                            200: '#e5e5e5',
+                            500: '#737373',
+                            900: '#111111'
+                        }
+                    },
+                    animation: {
+                        'marquee': 'marquee 40s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --primary: #1f4e79;
-            --secondary: #8b4513;
-            --accent: #ff6b35;
-            --military-green: #4a5d23;
-            --gold: #ffd700;
-            --bg-dark: #0a0a0a;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* Base & Reset */
         body {
-            font-family: 'Microsoft JhengHei', 'Arial', sans-serif;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
-            overflow-x: hidden;
-            line-height: 1.6;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            -webkit-font-smoothing: antialiased;
         }
         
-        .presentation-container {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            padding-bottom: 120px;
+        /* Language Toggle System */
+        body[data-lang="en"] .lang-zh { display: none !important; }
+        body[data-lang="zh"] .lang-en { display: none !important; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fff; }
+        ::-webkit-scrollbar-thumb { background: #e5e5e5; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ccc; }
+
+        /* Button Styles */
+        .academy-btn {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        
-        .slide {
-            display: none;
-            width: 100%;
-            min-height: calc(100vh - 120px);
-            padding: 40px 60px 60px 60px;
-            position: relative;
-            background: linear-gradient(135deg, rgba(31, 78, 121, 0.05) 0%, rgba(139, 69, 19, 0.05) 100%);
-            border-bottom: 2px solid rgba(255, 107, 53, 0.1);
-        }
-        
-        .slide.active {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-        }
-        
-        .slide-content {
-            max-width: 1400px;
-            width: 100%;
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        /* Logo Design */
-        .logo {
-            font-family: 'Impact', 'Arial Black', 'Microsoft JhengHei', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 900;
-            letter-spacing: 10px;
-            background: linear-gradient(45deg, var(--primary), var(--accent), var(--gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, transparent 30%, var(--accent) 50%, transparent 70%);
-            z-index: -1;
-            border-radius: 20px;
-            opacity: 0.3;
-            animation: logoGlow 3s ease-in-out infinite alternate;
-        }
-        
-        @keyframes logoGlow {
-            0% { transform: scale(1); opacity: 0.3; }
-            100% { transform: scale(1.05); opacity: 0.6; }
-        }
-        
-        .logo-subtitle {
-            font-size: 1.4rem;
-            color: var(--accent);
-            font-weight: 600;
-            letter-spacing: 4px;
-            margin-bottom: 2.5rem;
-        }
-        
-        .slide-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.2;
-        }
-        
-        .slide-subtitle {
-            font-size: 1.8rem;
-            color: #e2e8f0;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Navigation - 固定在底部 */
-        .nav-container {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            display: flex;
-            gap: 8px;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 12px 20px;
-            border-radius: 40px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            max-width: 90vw;
-            overflow-x: auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        .nav-btn {
-            padding: 8px 14px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            border-radius: 20px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 12px;
-            white-space: nowrap;
-            min-width: fit-content;
-        }
-        
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
+        .academy-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+
+        /* Grid & Borders */
+        .border-grid { border: 1px solid #e5e5e5; }
+
+        /* Reveal Text Animation */
+        .reveal-text { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .reveal-text.active { opacity: 1; transform: translateY(0); }
         
-        .nav-controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .control-btn {
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            font-size: 20px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
-        }
-        
-        .control-btn:hover {
-            background: var(--primary);
-            transform: scale(1.1);
-        }
-        
-        /* Grid Layouts - 針對演示優化 */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: start;
-            text-align: left;
-            margin: 40px 0;
-        }
-        
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            text-align: left;
-            margin: 40px 0;
-        }
-        
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        /* Cards - 增強可讀性 */
-        .card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 2px solid rgba(255, 107, 53, 0.2);
-            border-radius: 20px;
-            padding: 35px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
-            height: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 25px 50px rgba(255, 107, 53, 0.3);
-        }
-        
-        .card-icon {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            border-radius: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2.5rem;
-            color: white;
-            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
-        }
-        
-        .card-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--accent);
-            text-align: center;
-        }
-        
-        .card-content {
-            color: #e2e8f0;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-        
-        /* Statistics - 更醒目的數據展示 */
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-        
-        .stat-card {
-            text-align: center;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            border: 2px solid rgba(255, 107, 53, 0.2);
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-        }
-        
-        .stat-number {
-            font-size: 4rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--accent), var(--gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 15px;
-            line-height: 1;
-        }
-        
-        .stat-label {
-            color: #e2e8f0;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        /* Timeline - 橫向排列優化 */
-        .timeline-horizontal {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin: 60px 0;
-            position: relative;
-            padding: 40px 0;
-        }
-        
-        .timeline-horizontal::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 5%;
-            right: 5%;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--accent), var(--gold));
-            transform: translateY(-50%);
-            border-radius: 2px;
-        }
-        
-        .timeline-item-horizontal {
-            flex: 1;
-            text-align: center;
-            position: relative;
-            max-width: 300px;
-        }
-        
-        .timeline-marker-horizontal {
-            width: 30px;
-            height: 30px;
-            background: var(--accent);
-            border-radius: 50%;
-            border: 6px solid var(--bg-dark);
-            margin: 0 auto 25px;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
-        }
-        
-        .timeline-content-horizontal {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 30px;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 107, 53, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .timeline-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 10px;
-        }
-        
-        .timeline-period {
-            color: var(--gold);
-            font-weight: 700;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        /* Business Model - 收入流優化 */
-        .revenue-stream {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid rgba(255, 107, 53, 0.2);
-            margin-bottom: 25px;
-            transition: all 0.3s;
-        }
-        
-        .revenue-stream:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-        
-        .revenue-title {
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-weight: 700;
-        }
-        
-        .revenue-amount {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-        
-        /* Feature Lists - 改善列表樣式 */
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            margin: 30px 0;
-        }
-        
-        .feature-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
-        
-        .feature-list li::before {
-            content: '✓';
-            background: var(--accent);
-            color: white;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-            font-size: 16px;
-        }
-        
-        /* Benefit Grid */
-        .benefit-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-        
-        .benefit-item {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 6px solid var(--accent);
-            transition: all 0.3s;
-        }
-        
-        .benefit-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.2);
-        }
-        
-        .benefit-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-        
-        .benefit-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--gold);
-        }
-        
-        .benefit-desc {
-            color: #e2e8f0;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        
-        /* Special effects */
-        .glow-text {
-            text-shadow: 0 0 25px rgba(255, 107, 53, 0.8);
-        }
-        
-        .highlight {
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .success-color {
-            color: #10b981;
-        }
-        
-        .warning-color {
-            color: #f59e0b;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .slide {
-                padding: 30px 40px 80px 40px;
-            }
-            
-            .slide-content {
-                max-width: 100%;
-            }
-            
-            .timeline-horizontal {
-                flex-direction: column;
-                gap: 40px;
-            }
-            
-            .timeline-horizontal::before {
-                display: none;
-            }
-            
-            .timeline-item-horizontal {
-                max-width: 100%;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .slide {
-                padding: 20px 20px 100px 20px;
-            }
-            
-            .logo {
-                font-size: 3rem;
-                letter-spacing: 6px;
-            }
-            
-            .slide-title {
-                font-size: 2.5rem;
-            }
-            
-            .slide-subtitle {
-                font-size: 1.4rem;
-            }
-            
-            .grid-2, .grid-3, .grid-4 {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .nav-container {
-                bottom: 10px;
-                padding: 10px 15px;
-                gap: 5px;
-            }
-            
-            .nav-btn {
-                padding: 6px 10px;
-                font-size: 10px;
-            }
-            
-            .control-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-            }
-            
-            .stat-number {
-                font-size: 3rem;
-            }
-            
-            .card {
-                padding: 25px;
-            }
-            
-            .card-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 2rem;
-            }
-        }
-        
-        /* Animation */
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .slide-number {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: rgba(255, 107, 53, 0.8);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 14px;
-            color: #fff;
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
-        }
-        
-        /* 特殊內容樣式 */
-        .contact-info {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 30px;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 107, 53, 0.2);
-            text-align: left;
-            line-height: 2;
-            font-size: 1.1rem;
-        }
-        
-        .contact-info strong {
-            color: var(--accent);
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-        
-        /* 針對中文優化字體 */
-        h1, h2, h3 {
-            font-family: 'Microsoft JhengHei', 'PingFang TC', 'Hiragino Sans GB', sans-serif;
-        }
-        
-        .section-divider {
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            margin: 30px auto;
-            border-radius: 2px;
-        }
+        /* Image Hover Zoom */
+        .img-zoom-container { overflow: hidden; }
+        .img-zoom-container img { transition: transform 0.7s ease; }
+        .group:hover .img-zoom-container img { transform: scale(1.05); }
     </style>
 </head>
-<body>
-    <div class="presentation-container">
-        <!-- Slide 1: 封面 -->
-        <div class="slide active fade-in">
-            <div class="slide-number">1/16</div>
-            <div class="slide-content">
-                <div class="logo glow-text">WMC</div>
-                <div class="logo-subtitle">WORLD MILSIM CHAMPIONSHIP</div>
-                <h1 class="slide-title">世界軍推錦標賽</h1>
-                <p class="slide-subtitle">全球首個高度仿真軍事模擬對抗賽事體系<br>投資機會介紹</p>
-                <div class="stat-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">260億</div>
-                        <div class="stat-label">美元市場規模</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">16.8%</div>
-                        <div class="stat-label">年複合增長率</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">3200萬</div>
-                        <div class="stat-label">全球活躍用戶</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">5億</div>
-                        <div class="stat-label">目標年收入(美元)</div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Slide 2: 執行摘要 -->
-        <div class="slide fade-in">
-            <div class="slide-number">2/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">執行摘要</h1>
-                <div class="section-divider"></div>
-                <div class="grid-2">
-                    <div>
-                        <h2 class="highlight">項目概述</h2>
-                        <p style="margin-bottom: 30px; font-size: 1.2rem; line-height: 1.8;">WMC是全球首個高度仿真、全場景、多層級軍事模擬對抗賽事體系，創造性地融合了F1的全球巡回賽制、NBA的商業化模式以及迪士尼主題公園的文旅體驗。</p>
-                        
-                        <h2 class="highlight">核心價值主張</h2>
-                        <ul class="feature-list">
-                            <li>填補全球軍推職業賽事空白</li>
-                            <li>創新「賽事+文旅+IP」商業模式</li>
-                            <li>建立行業技術和安全標準</li>
-                            <li>打造可持續盈利生態系統</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="highlight">財務亮點</h2>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">📈 預期年收入(第5年)</div>
-                            <div class="revenue-amount">5億美元</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">💰 總融資需求</div>
-                            <div class="revenue-amount">2-3億美元</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">🎯 預期估值</div>
-                            <div class="revenue-amount">30-50億美元</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">⏰ 投資回報期</div>
-                            <div class="revenue-amount">5-7年</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<body data-lang="en" class="bg-white text-black selection:bg-black selection:text-white">
 
-        <!-- Slide 3: 市場機會 -->
-        <div class="slide fade-in">
-            <div class="slide-number">3/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">市場機會分析</h1>
-                <div class="section-divider"></div>
-                <div class="grid-2" style="margin-bottom: 40px;">
-                    <div>
-                        <h2 class="highlight">市場規模與增長</h2>
-                        <div class="stat-grid">
-                            <div class="stat-card">
-                                <div class="stat-number">260億</div>
-                                <div class="stat-label">美元當前市場規模</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number success-color">16.8%</div>
-                                <div class="stat-label">年複合增長率</div>
-                            </div>
-                        </div>
-                        <div class="stat-grid">
-                            <div class="stat-card">
-                                <div class="stat-number">3200萬</div>
-                                <div class="stat-label">當前活躍用戶</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number success-color">8000萬</div>
-                                <div class="stat-label">2030年預期用戶</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h2 class="highlight">區域分布</h2>
-                        <div class="benefit-grid">
-                            <div class="benefit-item">
-                                <div class="benefit-title">北美 33%</div>
-                                <div class="benefit-desc">成熟市場，年增長10.2%</div>
-                            </div>
-                            <div class="benefit-item">
-                                <div class="benefit-title">歐洲 28%</div>
-                                <div class="benefit-desc">穩定增長，年增長12.5%</div>
-                            </div>
-                            <div class="benefit-item">
-                                <div class="benefit-title">亞太 27%</div>
-                                <div class="benefit-desc">高速增長，年增長24.7%</div>
-                            </div>
-                            <div class="benefit-item">
-                                <div class="benefit-title">其他 12%</div>
-                                <div class="benefit-desc">新興市場，巨大潛力</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <h2 class="highlight">競爭優勢</h2>
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-icon">🎯</div>
-                        <div class="card-title">市場空白</div>
-                        <div class="card-content">全球缺乏統一的專業軍推賽事體系，WMC填補市場空白，成為行業標準制定者</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🏗️</div>
-                        <div class="card-title">技術壁壘</div>
-                        <div class="card-content">先進的命中判定系統、戰場感知技術和數據分析平台構建技術護城河</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🌍</div>
-                        <div class="card-title">全球網絡</div>
-                        <div class="card-content">五大賽區、多個軍推公園形成全球網絡效應，難以複製</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 4: 商業模式 -->
-        <div class="slide fade-in">
-            <div class="slide-number">4/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">商業模式創新</h1>
-                <p class="slide-subtitle">多元化收入結構，確保可持續盈利</p>
-                <div class="grid-2">
-                    <div>
-                        <h2 class="highlight">四大收入來源</h2>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">🏆 賽事收入</div>
-                            <div class="revenue-amount">30%</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">參賽費、票務、轉播權、贊助</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">🎢 軍推公園</div>
-                            <div class="revenue-amount">40%</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">門票、體驗、餐飲、住宿</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">🎨 IP授權</div>
-                            <div class="revenue-amount">20%</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">遊戲、影視、周邊、裝備</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">📚 教育培訓</div>
-                            <div class="revenue-amount">10%</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">課程、認證、諮詢服務</div>
-                        </div>
-                    </div>
-                    <div>
-                        <h2 class="highlight">收入預測(美元)</h2>
-                        <div class="stat-grid">
-                            <div class="stat-card">
-                                <div class="stat-number">3000萬</div>
-                                <div class="stat-label">第2年預期收入</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">1.5億</div>
-                                <div class="stat-label">第4年預期收入</div>
-                            </div>
-                        </div>
-                        <div class="stat-grid">
-                            <div class="stat-card">
-                                <div class="stat-number success-color">5億</div>
-                                <div class="stat-label">第5年預期收入</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number warning-color">35%</div>
-                                <div class="stat-label">預期利潤率</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 40px;">
-                    <h2 class="highlight">商業模式特點</h2>
-                    <div class="grid-3">
-                        <div class="benefit-item">
-                            <div class="benefit-icon">🔄</div>
-                            <div class="benefit-title">循環經濟</div>
-                            <div class="benefit-desc">賽事帶動公園、公園培育粉絲、粉絲支撐賽事</div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">📈</div>
-                            <div class="benefit-title">規模效應</div>
-                            <div class="benefit-desc">全球網絡產生協同效應，邊際成本遞減</div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">🛡️</div>
-                            <div class="benefit-title">抗風險性</div>
-                            <div class="benefit-desc">多元化收入降低單一業務風險</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 5: 技術優勢 -->
-        <div class="slide fade-in">
-            <div class="slide-number">5/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">核心技術優勢</h1>
-                <p class="slide-subtitle">構建技術護城河，確保競爭優勢</p>
-                <div class="grid-2">
-                    <div>
-                        <h2 class="highlight">核心技術系統</h2>
-                        <div class="card" style="margin-bottom: 20px;">
-                            <div class="card-title">命中判定系統(HMSS)</div>
-                            <div class="card-content">
-                                • 多點感應器精確判定<br>
-                                • 即時無線數據傳輸<br>
-                                • 防作弊加密技術<br>
-                                • 99.9%判定準確率
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-title">戰場感知系統(BAS)</div>
-                            <div class="card-content">
-                                • 全場景高畫質攝影覆蓋<br>
-                                • 熱成像追蹤系統<br>
-                                • 環境感應器監測<br>
-                                • 中央控制數據管理
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card" style="margin-bottom: 20px;">
-                            <div class="card-title">數據分析平台</div>
-                            <div class="card-content">
-                                • 基於UWB技術的精確定位<br>
-                                • AI驅動戰術分析<br>
-                                • 3D戰術回放系統<br>
-                                • 個人化訓練建議
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-title">無人系統整合</div>
-                            <div class="card-content">
-                                • 戰術無人機系統<br>
-                                • 地面機器人平台<br>
-                                • 智能目標系統<br>
-                                • 自動化場景控制
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 40px;">
-                    <h2 class="highlight">技術壁壘與專利保護</h2>
-                    <div class="grid-4">
-                        <div class="stat-card">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">核心技術專利</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">99.9%</div>
-                            <div class="stat-label">系統可靠性</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">10ms</div>
-                            <div class="stat-label">系統響應時間</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">技術支援</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 6: 產品體系 -->
-        <div class="slide fade-in">
-            <div class="slide-number">6/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">產品與服務體系</h1>
-                <div class="section-divider"></div>
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-icon">🏆</div>
-                        <div class="card-title">賽事產品</div>
-                        <div class="card-content">
-                            <strong>全球巡回賽制</strong><br>
-                            • 五大賽區，20-25站分站賽<br>
-                            • 四級參賽體系<br>
-                            • 五大標準場景<br>
-                            • 專業裁判與技術支援<br><br>
-                            <span class="highlight" style="font-size: 1.2rem;">年度目標觀眾：2億</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🎢</div>
-                        <div class="card-title">軍推公園</div>
-                        <div class="card-content">
-                            <strong>MILSIM.World主題公園</strong><br>
-                            • 專業賽事場地<br>
-                            • 沉浸式體驗項目<br>
-                            • 主題酒店餐飲<br>
-                            • 企業團建服務<br><br>
-                            <span class="highlight" style="font-size: 1.2rem;">規劃：全球10-15個</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">📚</div>
-                        <div class="card-title">教育培訓</div>
-                        <div class="card-content">
-                            <strong>三級培訓認證體系</strong><br>
-                            • 基礎培訓(120課時)<br>
-                            • 進階培訓(240課時)<br>
-                            • 精英培訓(360課時)<br>
-                            • 國際認證資格<br><br>
-                            <span class="highlight" style="font-size: 1.2rem;">目標：培訓10萬+學員</span>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 50px;">
-                    <h2 class="highlight">產品差異化優勢</h2>
-                    <div class="grid-2">
-                        <div>
-                            <h3 style="color: var(--accent); margin-bottom: 25px; font-size: 1.5rem;">vs 傳統軍推活動</h3>
-                            <ul class="feature-list">
-                                <li>統一技術標準和規則</li>
-                                <li>專業化賽事組織</li>
-                                <li>全球化品牌影響力</li>
-                                <li>商業化營運模式</li>
-                                <li>觀賞性和娛樂性</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 style="color: var(--accent); margin-bottom: 25px; font-size: 1.5rem;">vs 傳統體育賽事</h3>
-                            <ul class="feature-list">
-                                <li>更高的參與門檻和專業性</li>
-                                <li>科技含量和創新性更強</li>
-                                <li>軍事文化的獨特吸引力</li>
-                                <li>全方位體驗產品組合</li>
-                                <li>更強的社群黏性</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 7: 發展規劃 - 橫向時間線 -->
-        <div class="slide fade-in">
-            <div class="slide-number">7/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">五年發展規劃</h1>
-                <div class="section-divider"></div>
-                <div class="timeline-horizontal">
-                    <div class="timeline-item-horizontal">
-                        <div class="timeline-marker-horizontal"></div>
-                        <div class="timeline-content-horizontal">
-                            <div class="timeline-title">基礎建設期</div>
-                            <div class="timeline-period">第1-2年</div>
-                            <div style="color: #e2e8f0; line-height: 1.8;">
-                                • 建立組織架構和標準體系<br>
-                                • 完成2個核心賽事基地<br>
-                                • 舉辦首屆區域賽事<br>
-                                • 培育32支專業隊伍<br>
-                                • 完成A輪融資5000萬美元
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item-horizontal">
-                        <div class="timeline-marker-horizontal"></div>
-                        <div class="timeline-content-horizontal">
-                            <div class="timeline-title">全球擴張期</div>
-                            <div class="timeline-period">第3-4年</div>
-                            <div style="color: #e2e8f0; line-height: 1.8;">
-                                • 覆蓋全球五大賽區<br>
-                                • 建成5個核心賽事基地<br>
-                                • 開放3-5個軍推公園<br>
-                                • 啟動全球總決賽<br>
-                                • 完成B、C輪融資2億美元
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item-horizontal">
-                        <div class="timeline-marker-horizontal"></div>
-                        <div class="timeline-content-horizontal">
-                            <div class="timeline-title">成熟營運期</div>
-                            <div class="timeline-period">第5年+</div>
-                            <div style="color: #e2e8f0; line-height: 1.8;">
-                                • 年收入突破5億美元<br>
-                                • 全球觀眾突破2億<br>
-                                • 軍推公園網絡10-15個<br>
-                                • 考慮IPO或戰略退出<br>
-                                • 市場估值30-50億美元
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 8: 財務規劃 -->
-        <div class="slide fade-in">
-            <div class="slide-number">8/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">財務規劃與投資回報</h1>
-                <div class="section-divider"></div>
-                <div class="grid-2">
-                    <div>
-                        <h2 class="highlight">五年收入預測</h2>
-                        <div class="stat-grid">
-                            <div class="stat-card">
-                                <div class="stat-number">500萬</div>
-                                <div class="stat-label">第1年</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">3000萬</div>
-                                <div class="stat-label">第2年</div>
-                            </div>
-                        </div>
-                        <div class="stat-grid">
-                            <div class="stat-card">
-                                <div class="stat-number">8000萬</div>
-                                <div class="stat-label">第3年</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">1.5億</div>
-                                <div class="stat-label">第4年</div>
-                            </div>
-                        </div>
-                        <div class="stat-card" style="margin-top: 20px;">
-                            <div class="stat-number success-color">5億</div>
-                            <div class="stat-label">第5年目標收入</div>
-                        </div>
-                    </div>
-                    <div>
-                        <h2 class="highlight">投資需求分配</h2>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">🏗️ 基礎設施建設</div>
-                            <div class="revenue-amount">40%</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">賽事基地、軍推公園建設</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">💻 技術研發</div>
-                            <div class="revenue-amount">25%</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">裝備研發、系統開發</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">📢 市場行銷</div>
-                            <div class="revenue-amount">20%</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">品牌建設、推廣活動</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">👥 團隊建設</div>
-                            <div class="revenue-amount">15%</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">人才招募、培訓發展</div>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 40px;">
-                    <h2 class="highlight">投資回報預期</h2>
-                    <div class="grid-4">
-                        <div class="stat-card">
-                            <div class="stat-number success-color">10-15x</div>
-                            <div class="stat-label">預期投資回報倍數</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">5-7年</div>
-                            <div class="stat-label">投資回報週期</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">35%</div>
-                            <div class="stat-label">第5年利潤率</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">IPO</div>
-                            <div class="stat-label">預期退出方式</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 9: 團隊介紹 -->
-        <div class="slide fade-in">
-            <div class="slide-number">9/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">核心團隊</h1>
-                <p class="slide-subtitle">匯聚體育、軍事、技術、商業各領域頂尖人才</p>
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-icon">👨‍💼</div>
-                        <div class="card-title">執行長</div>
-                        <div class="card-content">
-                            <strong>體育產業資深專家</strong><br>
-                            • 15年體育賽事營運經驗<br>
-                            • 曾任國際體育組織高管<br>
-                            • 成功營運多個大型賽事<br>
-                            • MBA及體育管理碩士
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">⚙️</div>
-                        <div class="card-title">技術長</div>
-                        <div class="card-content">
-                            <strong>軍事技術專家</strong><br>
-                            • 20年軍事裝備研發經驗<br>
-                            • 多項軍用技術專利<br>
-                            • 前國防科技公司技術總監<br>
-                            • 電腦科學博士學位
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">💰</div>
-                        <div class="card-title">財務長</div>
-                        <div class="card-content">
-                            <strong>財務管理專家</strong><br>
-                            • 12年投銀和PE經驗<br>
-                            • 參與多起IPO項目<br>
-                            • 熟悉體育娛樂行業<br>
-                            • CPA及金融碩士
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 50px;">
-                    <h2 class="highlight">顧問團隊</h2>
-                    <div class="grid-4">
-                        <div class="benefit-item">
-                            <div class="benefit-icon">🎖️</div>
-                            <div class="benefit-title">軍事顧問</div>
-                            <div class="benefit-desc">退役將軍和軍事專家提供專業指導</div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">🏆</div>
-                            <div class="benefit-title">體育顧問</div>
-                            <div class="benefit-desc">國際體育組織高管和賽事專家</div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">💼</div>
-                            <div class="benefit-title">商業顧問</div>
-                            <div class="benefit-desc">知名投資人和企業家戰略指導</div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">🔬</div>
-                            <div class="benefit-title">技術顧問</div>
-                            <div class="benefit-desc">AI、IoT、AR/VR領域技術專家</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 10: 合作夥伴 -->
-        <div class="slide fade-in">
-            <div class="slide-number">10/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">戰略合作生態</h1>
-                <div class="section-divider"></div>
-                <div class="grid-2">
-                    <div>
-                        <h2 class="highlight">已確認合作夥伴</h2>
-                        <div class="card" style="margin-bottom: 20px;">
-                            <div class="card-title">裝備技術合作</div>
-                            <div class="card-content">
-                                • 全球前5大軍工企業戰略合作<br>
-                                • 專業感應器技術提供商<br>
-                                • 無人機製造商獨家合作<br>
-                                • AI技術平台深度整合
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-title">場地建設合作</div>
-                            <div class="card-content">
-                                • 國際知名主題公園設計公司<br>
-                                • 大型地產開發商戰略合作<br>
-                                • 專業場地營運管理團隊<br>
-                                • 建築工程總承包商
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card" style="margin-bottom: 20px;">
-                            <div class="card-title">媒體轉播合作</div>
-                            <div class="card-content">
-                                • 全球體育媒體集團合作意向<br>
-                                • 數位串流媒體平台戰略合作<br>
-                                • 專業內容製作公司<br>
-                                • 社群媒體平台推廣合作
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-title">教育培訓合作</div>
-                            <div class="card-content">
-                                • 知名大學體育學院合作<br>
-                                • 國際教育認證機構<br>
-                                • 職業培訓連鎖機構<br>
-                                • 線上教育平台整合
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 50px;">
-                    <h2 class="highlight">合作價值</h2>
-                    <div class="grid-4">
-                        <div class="stat-card">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">戰略合作夥伴</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">15億</div>
-                            <div class="stat-label">合作投資承諾(美元)</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">5</div>
-                            <div class="stat-label">全球媒體合作</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">100+</div>
-                            <div class="stat-label">供應鏈夥伴</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 11: 風險分析 -->
-        <div class="slide fade-in">
-            <div class="slide-number">11/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">風險分析與應對</h1>
-                <div class="section-divider"></div>
-                <div class="grid-2">
-                    <div>
-                        <h2 class="highlight">主要風險因素</h2>
-                        <div class="card" style="margin-bottom: 20px;">
-                            <div class="card-title">🔴 高風險</div>
-                            <div class="card-content">
-                                <strong>監管風險：</strong>各國對軍事模擬活動的監管差異<br>
-                                <strong>競爭風險：</strong>大型體育娛樂集團可能進入<br>
-                                <strong>技術風險：</strong>核心技術被模仿或超越
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-title">🟡 中等風險</div>
-                            <div class="card-content">
-                                <strong>市場風險：</strong>消費者接受度不達預期<br>
-                                <strong>資金風險：</strong>建設投入過大影響現金流<br>
-                                <strong>人才風險：</strong>核心人才流失
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h2 class="highlight">風險應對策略</h2>
-                        <div class="benefit-grid">
-                            <div class="benefit-item">
-                                <div class="benefit-icon">⚖️</div>
-                                <div class="benefit-title">合規管理</div>
-                                <div class="benefit-desc">建立分層合規系統，積極與監管機構溝通合作</div>
-                            </div>
-                            <div class="benefit-item">
-                                <div class="benefit-icon">🛡️</div>
-                                <div class="benefit-title">技術保護</div>
-                                <div class="benefit-desc">全面專利保護，持續技術創新領先</div>
-                            </div>
-                            <div class="benefit-item">
-                                <div class="benefit-icon">🤝</div>
-                                <div class="benefit-title">戰略聯盟</div>
-                                <div class="benefit-desc">與行業巨頭建立深度合作，共同抵禦競爭</div>
-                            </div>
-                            <div class="benefit-item">
-                                <div class="benefit-icon">📊</div>
-                                <div class="benefit-title">分階段實施</div>
-                                <div class="benefit-desc">控制投資節奏，根據市場反饋調整策略</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 50px;">
-                    <h2 class="highlight">風險緩解措施</h2>
-                    <div class="grid-3">
-                        <div class="card">
-                            <div class="card-icon">💰</div>
-                            <div class="card-title">多元化收入</div>
-                            <div class="card-content">四大收入來源分散風險，即使單一業務受挫也能維持營運</div>
-                        </div>
-                        <div class="card">
-                            <div class="card-icon">🌍</div>
-                            <div class="card-title">全球佈局</div>
-                            <div class="card-content">多區域營運減少地方政策風險，形成全球化保護</div>
-                        </div>
-                        <div class="card">
-                            <div class="card-icon">📋</div>
-                            <div class="card-title">保險保障</div>
-                            <div class="card-content">全面保險體系覆蓋，包括責任險、財產險、關鍵人員險</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 12: 投資亮點 -->
-        <div class="slide fade-in">
-            <div class="slide-number">12/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">投資亮點</h1>
-                <p class="slide-subtitle">為什麼選擇投資WMC</p>
-                <div class="grid-2">
-                    <div>
-                        <h2 class="highlight">獨特價值主張</h2>
-                        <ul class="feature-list">
-                            <li>全球首個專業軍推賽事體系</li>
-                            <li>260億美元藍海市場的開拓者</li>
-                            <li>技術驅動的創新商業模式</li>
-                            <li>多元化可持續收入結構</li>
-                            <li>強大的品牌和IP價值</li>
-                            <li>全球網絡效應和規模經濟</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="highlight">財務吸引力</h2>
-                        <div class="stat-grid">
-                            <div class="stat-card">
-                                <div class="stat-number success-color">10-15x</div>
-                                <div class="stat-label">預期投資回報</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">35%</div>
-                                <div class="stat-label">目標利潤率</div>
-                            </div>
-                        </div>
-                        <div class="stat-grid">
-                            <div class="stat-card">
-                                <div class="stat-number">5-7年</div>
-                                <div class="stat-label">投資週期</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number success-color">IPO</div>
-                                <div class="stat-label">明確退出路徑</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 50px;">
-                    <h2 class="highlight">戰略價值</h2>
-                    <div class="grid-3">
-                        <div class="card">
-                            <div class="card-icon">🏭</div>
-                            <div class="card-title">產業整合機會</div>
-                            <div class="card-content">有機會整合軍事裝備、體育娛樂、主題公園等多個產業，形成生態閉環</div>
-                        </div>
-                        <div class="card">
-                            <div class="card-icon">🌐</div>
-                            <div class="card-title">全球擴張潛力</div>
-                            <div class="card-content">可複製的商業模式具備快速全球擴張能力，搶占先發優勢</div>
-                        </div>
-                        <div class="card">
-                            <div class="card-icon">🔮</div>
-                            <div class="card-title">未來科技應用</div>
-                            <div class="card-content">AR/VR、AI、物聯網等前沿技術的理想應用場景，具備技術溢出價值</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 13: 融資需求 -->
-        <div class="slide fade-in">
-            <div class="slide-number">13/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">融資需求與用途</h1>
-                <div class="section-divider"></div>
-                <div class="grid-2">
-                    <div>
-                        <h2 class="highlight">分輪融資計劃</h2>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">🚀 種子輪</div>
-                            <div class="revenue-amount">1000萬美元</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">完成概念驗證，建立核心團隊</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">📈 A輪</div>
-                            <div class="revenue-amount">5000萬美元</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">建設首批設施，啟動初期營運</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">🌍 B輪</div>
-                            <div class="revenue-amount">1億美元</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">全球擴張，多區域佈局</div>
-                        </div>
-                        <div class="revenue-stream">
-                            <div class="revenue-title">🏆 C輪</div>
-                            <div class="revenue-amount">1.5億美元</div>
-                            <div style="color: #e2e8f0; font-size: 1.1rem;">完善生態，準備上市</div>
-                        </div>
-                    </div>
-                    <div>
-                        <h2 class="highlight">當前融資：A輪</h2>
-                        <div class="stat-grid">
-                            <div class="stat-card">
-                                <div class="stat-number">5000萬</div>
-                                <div class="stat-label">融資金額(美元)</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">15%</div>
-                                <div class="stat-label">出讓股權比例</div>
-                            </div>
-                        </div>
-                        <div class="stat-grid">
-                            <div class="stat-card">
-                                <div class="stat-number">3.3億</div>
-                                <div class="stat-label">投前估值(美元)</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">18個月</div>
-                                <div class="stat-label">資金使用週期</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 50px;">
-                    <h2 class="highlight">A輪資金用途</h2>
-                    <div class="grid-4">
-                        <div class="card">
-                            <div class="card-icon">🏗️</div>
-                            <div class="card-title">基礎設施</div>
-                            <div class="card-content">
-                                <strong>2000萬美元 (40%)</strong><br>
-                                • 2個核心賽事基地<br>
-                                • 首個軍推公園建設<br>
-                                • 技術系統部署
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-icon">⚙️</div>
-                            <div class="card-title">技術研發</div>
-                            <div class="card-content">
-                                <strong>1250萬美元 (25%)</strong><br>
-                                • 核心技術平台<br>
-                                • 裝備標準制定<br>
-                                • 專利申請
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-icon">📢</div>
-                            <div class="card-title">市場行銷</div>
-                            <div class="card-content">
-                                <strong>1000萬美元 (20%)</strong><br>
-                                • 品牌建設<br>
-                                • 全球推廣<br>
-                                • 合作夥伴開發
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-icon">👥</div>
-                            <div class="card-title">團隊建設</div>
-                            <div class="card-content">
-                                <strong>750萬美元 (15%)</strong><br>
-                                • 核心人才招募<br>
-                                • 團隊培訓<br>
-                                • 營運資金
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 14: 投資人權益 -->
-        <div class="slide fade-in">
-            <div class="slide-number">14/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">投資人權益與保障</h1>
-                <div class="section-divider"></div>
-                <div class="grid-2">
-                    <div>
-                        <h2 class="highlight">投資人權益</h2>
-                        <ul class="feature-list">
-                            <li>董事會席位(重大投資人)</li>
-                            <li>重大決策一票否決權</li>
-                            <li>財務資訊知情權</li>
-                            <li>優先購買權和反稀釋權</li>
-                            <li>清算優先權</li>
-                            <li>共同出售權</li>
-                        </ul>
-                        
-                        <h2 class="highlight" style="margin-top: 30px;">特殊權益</h2>
-                        <div class="benefit-grid">
-                            <div class="benefit-item">
-                                <div class="benefit-icon">🎟️</div>
-                                <div class="benefit-title">賽事特權</div>
-                                <div class="benefit-desc">終身VIP觀賽權，專屬體驗服務</div>
-                            </div>
-                            <div class="benefit-item">
-                                <div class="benefit-icon">🏢</div>
-                                <div class="benefit-title">商業機會</div>
-                                <div class="benefit-desc">軍推公園優先合作機會</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h2 class="highlight">風險保障機制</h2>
-                        <div class="card" style="margin-bottom: 20px;">
-                            <div class="card-title">業績對賭協議</div>
-                            <div class="card-content">
-                                設立明確的業績指標和時間節點，未達標時管理層承擔相應責任，保障投資人利益
-                            </div>
-                        </div>
-                        <div class="card" style="margin-bottom: 20px;">
-                            <div class="card-title">分階段投資</div>
-                            <div class="card-content">
-                                根據里程碑分批投入資金，降低投資風險，確保資金使用效率
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-title">退出保障</div>
-                            <div class="card-content">
-                                明確IPO時間表，如未能按時上市提供回購或其他退出方案
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 50px;">
-                    <h2 class="highlight">投資人價值創造</h2>
-                    <div class="grid-3">
-                        <div class="card">
-                            <div class="card-icon">🌐</div>
-                            <div class="card-title">資源整合</div>
-                            <div class="card-content">利用投資人在相關行業的資源網絡，加速業務發展和市場拓展</div>
-                        </div>
-                        <div class="card">
-                            <div class="card-icon">🎯</div>
-                            <div class="card-title">戰略指導</div>
-                            <div class="card-content">投資人參與重大戰略決策，提供行業經驗和市場洞察</div>
-                        </div>
-                        <div class="card">
-                            <div class="card-icon">🚀</div>
-                            <div class="card-title">增值服務</div>
-                            <div class="card-content">提供人才招募、技術對接、市場准入等全方位增值服務</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 15: 下一步行動 -->
-        <div class="slide fade-in">
-            <div class="slide-number">15/16</div>
-            <div class="slide-content">
-                <h1 class="slide-title">下一步行動計劃</h1>
-                <div class="section-divider"></div>
-                <div class="timeline-horizontal">
-                    <div class="timeline-item-horizontal">
-                        <div class="timeline-marker-horizontal"></div>
-                        <div class="timeline-content-horizontal">
-                            <div class="timeline-title">立即啟動</div>
-                            <div class="timeline-period">Q1 2025</div>
-                            <div style="color: #e2e8f0; line-height: 1.8;">
-                                • 完成A輪融資簽約<br>
-                                • 核心團隊到位<br>
-                                • 技術研發啟動<br>
-                                • 合作夥伴簽約
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item-horizontal">
-                        <div class="timeline-marker-horizontal"></div>
-                        <div class="timeline-content-horizontal">
-                            <div class="timeline-title">基礎建設</div>
-                            <div class="timeline-period">Q2-Q4 2025</div>
-                            <div style="color: #e2e8f0; line-height: 1.8;">
-                                • 首個賽事基地開工<br>
-                                • 技術系統測試<br>
-                                • 標準規則發布<br>
-                                • 隊伍招募啟動
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item-horizontal">
-                        <div class="timeline-marker-horizontal"></div>
-                        <div class="timeline-content-horizontal">
-                            <div class="timeline-title">首次賽事</div>
-                            <div class="timeline-period">Q1 2026</div>
-                            <div style="color: #e2e8f0; line-height: 1.8;">
-                                • 首屆區域性比賽<br>
-                                • 媒體轉播測試<br>
-                                • 市場反饋收集<br>
-                                • B輪融資準備
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 60px;">
-                    <h2 class="highlight">投資人支援需求</h2>
-                    <div class="grid-3">
-                        <div class="card">
-                            <div class="card-icon">💰</div>
-                            <div class="card-title">資金支援</div>
-                            <div class="card-content">
-                                <strong>5000萬美元A輪融資</strong><br>
-                                • 單一投資人：500萬美元起<br>
-                                • 領投機構：1500萬美元起<br>
-                                • 戰略投資人優先考慮
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-icon">🤝</div>
-                            <div class="card-title">資源對接</div>
-                            <div class="card-content">
-                                <strong>行業資源與人脈</strong><br>
-                                • 體育產業合作夥伴<br>
-                                • 軍工企業技術合作<br>
-                                • 地產開發商場地資源
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-icon">🎯</div>
-                            <div class="card-title">戰略指導</div>
-                            <div class="card-content">
-                                <strong>專業經驗與建議</strong><br>
-                                • 國際化擴張經驗<br>
-                                • 體育賽事營運指導<br>
-                                • IPO上市路徑規劃
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 16: 聯繫方式 -->
-        <div class="slide fade-in">
-            <div class="slide-number">16/16</div>
-            <div class="slide-content">
-                <div class="logo glow-text">WMC</div>
-                <div class="logo-subtitle">WORLD MILSIM CHAMPIONSHIP</div>
-                <h1 class="slide-title">感謝您的關注</h1>
-                <p class="slide-subtitle">期待與您共創軍事模擬競技產業的輝煌未來</p>
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 transition-all duration-300">
+        <div class="px-6 md:px-8 py-4 flex justify-between items-center max-w-[1920px] mx-auto">
+            <a href="#" class="flex items-center gap-4 group">
+                <img src="logo.jpg" alt="HKAIIFF Logo" class="w-10 h-10 object-contain group-hover:scale-105 transition-transform">
                 
-                <div class="grid-2" style="margin-top: 60px;">
-                    <div class="contact-info">
-                        <strong>聯繫資訊</strong>
-                        📧 investors@wmc.cool<br>
-                        🌐 www.wmc.cool<br><br>
-                        
-                        <strong>商務合作部</strong><br>
-                        📧 partnerships@wmc.cool<br><br>
-                        
-                        <strong>媒體關係部</strong><br>
-                        📧 media@wmc.cool
-                    </div>
-                    <div class="contact-info">
-                        <strong>獲取更多資訊：</strong><br>
-                        • 詳細商業計劃書<br>
-                        • 財務模型與預測<br>
-                        • 技術白皮書<br>
-                        • 市場調研報告<br>
-                        • 法律文件模板<br><br>
-                        
-                        <strong>實地考察：</strong><br>
-                        • 技術演示中心參觀<br>
-                        • 原型場地體驗<br>
-                        • 團隊面對面交流
-                    </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="text-lg font-bold tracking-tight">HKAIIFF.</span>
+                    <span class="text-[0.6rem] font-mono uppercase tracking-wider text-gray-500 group-hover:text-black transition-colors">
+                        <span class="lang-en">Hong Kong AI International Film Festival</span>
+                        <span class="lang-zh">香港AI國際電影節</span>
+                    </span>
+                </div>
+            </a>
+            
+            <div class="hidden xl:flex items-center gap-1 text-[13px] font-medium tracking-wide">
+                <a href="#vision" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">Vision</span><span class="lang-zh">願景</span></a>
+                <a href="#categories" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">Categories</span><span class="lang-zh">類別</span></a>
+                <a href="#awards" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">Awards</span><span class="lang-zh">獎項</span></a>
+                <a href="#schedule" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">Schedule</span><span class="lang-zh">日程</span></a>
+                <a href="#ecosystem" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">Ecosystem</span><span class="lang-zh">生態</span></a>
+                <a href="#comparison" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">Why Us</span><span class="lang-zh">對比</span></a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLanguage()" class="text-xs font-mono border border-gray-200 px-3 py-1.5 rounded-full hover:bg-black hover:text-white transition-all uppercase">
+                    <span class="lang-en">ZH</span><span class="lang-zh">EN</span>
+                </button>
+                
+                <a href="#submission" class="hidden md:flex bg-black text-white text-[13px] font-medium px-6 py-3 rounded-full academy-btn items-center gap-2">
+                    <span class="lang-en">Submit Now</span><span class="lang-zh">立即參賽</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-32 pb-20 px-6 md:px-8 max-w-[1920px] mx-auto border-b border-gray-200">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div class="md:col-span-8">
+                <div class="mb-6 inline-flex items-center gap-2 border border-gray-200 rounded-full px-3 py-1 bg-gray-50">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-[10px] uppercase tracking-widest font-mono font-medium text-gray-500">
+                        <span class="lang-en">The Future of Cinematic Art</span><span class="lang-zh">重新定義AI時代的電影藝術</span>
+                    </span>
                 </div>
                 
-                <div style="margin-top: 60px;">
-                    <div class="highlight" style="font-size: 1.8rem; margin-bottom: 25px;">
-                        "成為全球軍事模擬競技產業的開創者和領導者"
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] mb-10 text-black">
+                    <span class="lang-en">The Cinema <br> of Intelligence.</span>
+                    <span class="lang-zh">智能時代的<br> 電影新浪潮</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-500 max-w-2xl leading-relaxed font-light">
+                    <span class="lang-en">Moving from "Auteur Theory" to "Conductor Theory".<br>The world's first AI-native film festival building the next-gen creative economy infrastructure.</span>
+                    <span class="lang-zh">從「作者論」到「指揮家論」的範式轉移。<br>全球首個AI原生電影節，構建新一代創意經濟基礎設施。</span>
+                </p>
+            </div>
+
+            <div class="md:col-span-4 flex flex-col justify-end">
+                <div class="grid grid-cols-2 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="bg-white p-6 hover:bg-gray-50 transition-colors">
+                        <span class="block text-3xl font-bold mb-1">$3M</span>
+                        <span class="text-[10px] uppercase font-mono text-gray-400"><span class="lang-en">Prize Pool</span><span class="lang-zh">總獎金池</span></span>
                     </div>
-                    <div style="color: #e2e8f0; font-size: 1.2rem; line-height: 1.6;">
-                        WMC - 不僅是一項賽事，更是一個改變行業格局的歷史性機遇
+                    <div class="bg-white p-6 hover:bg-gray-50 transition-colors">
+                        <span class="block text-3xl font-bold mb-1">27</span>
+                        <span class="text-[10px] uppercase font-mono text-gray-400"><span class="lang-en">Awards</span><span class="lang-zh">專業獎項</span></span>
+                    </div>
+                    <div class="bg-white p-6 hover:bg-gray-50 transition-colors">
+                        <span class="block text-3xl font-bold mb-1">40%+</span>
+                        <span class="text-[10px] uppercase font-mono text-gray-400"><span class="lang-en">AI Native</span><span class="lang-zh">AI含量要求</span></span>
+                    </div>
+                    <div class="bg-white p-6 hover:bg-gray-50 transition-colors">
+                        <span class="block text-3xl font-bold mb-1">9+1</span>
+                        <span class="text-[10px] uppercase font-mono text-gray-400"><span class="lang-en">Ecosystem</span><span class="lang-zh">生態架構</span></span>
                     </div>
                 </div>
             </div>
         </div>
+    </header>
+
+    <div class="border-b border-gray-200 py-6 overflow-hidden bg-gray-50">
+        <div class="whitespace-nowrap animate-marquee flex items-center gap-12 opacity-80 text-xs font-mono font-medium uppercase tracking-widest text-black">
+            <span>Neural Responsive Cinema</span> <span>✦</span> <span>Brain-Computer Interface</span> <span>✦</span> <span>Web3 Governance</span> <span>✦</span> <span>StarOS Digital Human</span> <span>✦</span> <span>Generative Film</span> <span>✦</span>
+            <span>神經響應式電影</span> <span>✦</span> <span>腦機接口觀影</span> <span>✦</span> <span>Web3 治理</span> <span>✦</span> <span>StarOS 數字人</span> <span>✦</span> <span>生成式電影</span> <span>✦</span>
+             <span>Neural Responsive Cinema</span> <span>✦</span> <span>Brain-Computer Interface</span> <span>✦</span> <span>Web3 Governance</span> <span>✦</span> <span>StarOS Digital Human</span> <span>✦</span> <span>Generative Film</span> <span>✦</span>
+        </div>
     </div>
 
-    <!-- Navigation -->
-    <div class="nav-container">
-        <div class="nav-btn active" onclick="goToSlide(1)">封面</div>
-        <div class="nav-btn" onclick="goToSlide(2)">執行摘要</div>
-        <div class="nav-btn" onclick="goToSlide(3)">市場機會</div>
-        <div class="nav-btn" onclick="goToSlide(4)">商業模式</div>
-        <div class="nav-btn" onclick="goToSlide(5)">技術優勢</div>
-        <div class="nav-btn" onclick="goToSlide(6)">產品體系</div>
-        <div class="nav-btn" onclick="goToSlide(7)">發展規劃</div>
-        <div class="nav-btn" onclick="goToSlide(8)">財務規劃</div>
-        <div class="nav-btn" onclick="goToSlide(9)">核心團隊</div>
-        <div class="nav-btn" onclick="goToSlide(10)">合作夥伴</div>
-        <div class="nav-btn" onclick="goToSlide(11)">風險分析</div>
-        <div class="nav-btn" onclick="goToSlide(12)">投資亮點</div>
-        <div class="nav-btn" onclick="goToSlide(13)">融資需求</div>
-        <div class="nav-btn" onclick="goToSlide(14)">投資權益</div>
-        <div class="nav-btn" onclick="goToSlide(15)">行動計劃</div>
-        <div class="nav-btn" onclick="goToSlide(16)">聯繫方式</div>
-    </div>
+    <section id="vision" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto border-b border-gray-200">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+            <div class="md:col-span-4">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6 reveal-text">
+                    <span class="lang-en">Redefining <br> Cinema Art.</span>
+                    <span class="lang-zh">重新定義 <br> 電影藝術</span>
+                </h2>
+                <span class="inline-block px-3 py-1 rounded-full border border-gray-300 text-xs font-mono text-gray-500 uppercase reveal-text delay-100">// The Paradigm Shift</span>
+            </div>
+            <div class="md:col-span-8">
+                <p class="text-xl font-light text-gray-600 mb-12 reveal-text">
+                    <span class="lang-en">We are at a critical turning point. HKAIIFF is not about becoming an "AI version" of existing models, but building a native evaluation system for the new era.</span>
+                    <span class="lang-zh">我們正站在電影藝術歷史上的一個關鍵轉折點。HKAIIFF不是要成為現有模式的「AI版本」，而是要構建一個全新的、原生於AI時代的電影藝術評價與展示體系。</span>
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 reveal-text">
+                    <div class="p-6 border border-gray-100 bg-gray-50 rounded-lg">
+                        <h4 class="text-xs uppercase tracking-wider text-gray-500 mb-4"><span class="lang-en">Traditional</span><span class="lang-zh">傳統模式</span></h4>
+                        <h3 class="text-2xl font-bold mb-4 line-through decoration-gray-400 decoration-2 text-gray-400"><span class="lang-en">Auteur Theory</span><span class="lang-zh">作者論</span></h3>
+                        <ul class="text-sm text-gray-500 space-y-3 list-disc pl-4">
+                            <li><span class="lang-en">Director as sole "author" & vision</span><span class="lang-zh">導演作為唯一「作者」，個人願景為核心</span></li>
+                            <li><span class="lang-en">Linear, manual creative process</span><span class="lang-zh">線性的、人工的創作流程</span></li>
+                            <li><span class="lang-en">Passive audience experience</span><span class="lang-zh">觀眾僅為被動的觀看者</span></li>
+                        </ul>
+                    </div>
+                    <div class="p-6 border border-black bg-black text-white rounded-lg shadow-xl">
+                        <h4 class="text-xs uppercase tracking-wider text-gray-400 mb-4"><span class="lang-en">AI Era</span><span class="lang-zh">AI 時代</span></h4>
+                        <h3 class="text-2xl font-bold mb-4"><span class="lang-en">Conductor Theory</span><span class="lang-zh">指揮家論</span></h3>
+                        <ul class="text-sm text-gray-300 space-y-3 list-disc pl-4">
+                            <li><span class="lang-en">Creator as symphony conductor</span><span class="lang-zh">創作者如交響樂指揮家</span></li>
+                            <li><span class="lang-en">Guiding systems via prompts & selection</span><span class="lang-zh">通過指令工程與選擇引導複雜系統</span></li>
+                            <li><span class="lang-en">Human-AI & Audience Co-creation</span><span class="lang-zh">人機協同，甚至觀眾腦波參與共創</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Controls -->
-    <div class="nav-controls">
-        <button class="control-btn" onclick="previousSlide()">‹</button>
-        <button class="control-btn" onclick="nextSlide()">›</button>
-    </div>
+    <section id="categories" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto bg-gray-50">
+        <div class="flex justify-between items-end mb-12 reveal-text">
+            <h2 class="text-3xl font-bold tracking-tight"><span class="lang-en">Core Categories</span><span class="lang-zh">四大參賽類別</span></h2>
+            <span class="text-xs font-mono text-gray-400">2026 Official Selection</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="group bg-white border border-gray-200 p-5 rounded-xl hover:shadow-2xl hover:border-black/10 transition-all duration-500 reveal-text">
+                <div class="aspect-[4/3] bg-gray-100 mb-6 overflow-hidden rounded-lg img-zoom-container">
+                    <img src="2.jpg" class="w-full h-full object-cover" alt="Generative Film">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <span class="font-mono text-xs text-gray-400">01</span>
+                    <span class="px-2 py-1 bg-black text-white rounded text-[10px] font-bold font-mono">40% - 70% AI</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 group-hover:text-gray-600 transition-colors"><span class="lang-en">Generative Film</span><span class="lang-zh">生成式電影</span></h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6 h-20 overflow-hidden">
+                    <span class="lang-en">Linear narrative where visuals/audio are AI-generated. Focus on human guidance and aesthetic style.</span>
+                    <span class="lang-zh">主體敘事結構為線性，但視覺、聲音或敘事元素主要由AI系統生成。評價重點在於人類創作者的引導與美學風格。</span>
+                </p>
+            </div>
+
+            <div class="group bg-white border border-gray-200 p-5 rounded-xl hover:shadow-2xl hover:border-black/10 transition-all duration-500 reveal-text delay-100">
+                <div class="aspect-[4/3] bg-gray-100 mb-6 overflow-hidden rounded-lg img-zoom-container">
+                    <img src="3.jpg" class="w-full h-full object-cover" alt="Interactive Narrative">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <span class="font-mono text-xs text-gray-400">02</span>
+                    <span class="px-2 py-1 bg-black text-white rounded text-[10px] font-bold font-mono">50% - 80% AI</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 group-hover:text-gray-600 transition-colors"><span class="lang-en">Interactive Narrative</span><span class="lang-zh">互動敘事</span></h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6 h-20 overflow-hidden">
+                    <span class="lang-en">Non-linear explorable experiences. Audience influences story direction or freely explores virtual worlds.</span>
+                    <span class="lang-zh">非線性的可探索體驗，觀眾能夠影響故事走向或自由探索AI輔助構建的虛擬世界。強調代理感。</span>
+                </p>
+            </div>
+
+            <div class="group bg-white border border-gray-200 p-5 rounded-xl hover:shadow-2xl hover:border-black/10 transition-all duration-500 reveal-text delay-200">
+                <div class="aspect-[4/3] bg-gray-100 mb-6 overflow-hidden rounded-lg img-zoom-container">
+                    <img src="4.jpg" class="w-full h-full object-cover" alt="Procedural Systems">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <span class="font-mono text-xs text-gray-400">03</span>
+                    <span class="px-2 py-1 bg-black text-white rounded text-[10px] font-bold font-mono">70% - 90% AI</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 group-hover:text-gray-600 transition-colors"><span class="lang-en">Procedural Systems</span><span class="lang-zh">程序化系統</span></h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6 h-20 overflow-hidden">
+                    <span class="lang-en">The entry is a "system" capable of generating unique, unpredictable narrative or visual experiences with each run.</span>
+                    <span class="lang-zh">參賽作品本身是一個「系統」，能夠在每次運行時生成獨一無二、不可預見的敘事或視覺體驗。</span>
+                </p>
+            </div>
+
+            <div class="group bg-white border border-gray-200 p-5 rounded-xl hover:shadow-2xl hover:border-black/10 transition-all duration-500 reveal-text delay-300">
+                <div class="aspect-[4/3] bg-gray-100 mb-6 overflow-hidden rounded-lg img-zoom-container">
+                    <img src="5.jpg" class="w-full h-full object-cover" alt="Digital Life">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <span class="font-mono text-xs text-gray-400">04</span>
+                    <span class="px-2 py-1 bg-black text-white rounded text-[10px] font-bold font-mono">60% - 85% AI</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 group-hover:text-gray-600 transition-colors"><span class="lang-en">Digital Life</span><span class="lang-zh">數字生命</span></h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6 h-20 overflow-hidden">
+                    <span class="lang-en">Artworks centered around AI-driven digital humans and synthetic performances. Evaluating realism.</span>
+                    <span class="lang-zh">以AI驅動的數字人、虛擬角色為核心的藝術作品。評審重點是數字角色的真實感與情感表現力。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-gray-200 pb-8 reveal-text">
+            <div>
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="lang-en">Awards & Prizes</span><span class="lang-zh">獎項設置</span>
+                </h2>
+                <p class="text-gray-500"><span class="lang-en">Recognizing Excellence in 27 Categories</span><span class="lang-zh">27個專業獎項，全方位認定卓越</span></p>
+            </div>
+            <div class="text-right">
+                <div class="text-4xl font-bold font-mono tracking-tight">$3,000,000</div>
+                <div class="text-xs uppercase tracking-widest text-gray-400 mt-1"><span class="lang-en">Total Prize Pool</span><span class="lang-zh">總獎金池</span></div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 border border-gray-200 mb-12 reveal-text">
+            <div class="border-r border-b lg:border-b-0 border-gray-200 p-10 hover:bg-black hover:text-white transition-colors duration-300 group">
+                <span class="text-xs font-mono opacity-50 mb-6 block">01 / Grand Prize</span>
+                <h3 class="text-2xl font-bold mb-2"><span class="lang-en">Unicorn Gold Award</span><span class="lang-zh">獨角獸金獎</span></h3>
+                <p class="text-xs uppercase tracking-widest opacity-50 mb-8"><span class="lang-en">Best AI-Native Film</span><span class="lang-zh">最佳AI原生電影</span></p>
+                <div class="text-5xl font-bold mb-4 font-serif italic">$1M</div>
+                <p class="text-xs opacity-50 leading-relaxed border-t border-current pt-4 group-hover:border-white/20">
+                    <span class="lang-en">Awarded to the most era-defining work. Includes global distribution & NFT Trophy.</span>
+                    <span class="lang-zh">授予最具時代開創性的作品。包含全球發行支持及區塊鏈NFT獎盃。</span>
+                </p>
+            </div>
+
+            <div class="border-r border-b lg:border-b-0 border-gray-200 p-10 hover:bg-black hover:text-white transition-colors duration-300 group">
+                <span class="text-xs font-mono opacity-50 mb-6 block">02 / Community</span>
+                <h3 class="text-2xl font-bold mb-2"><span class="lang-en">AIF Community</span><span class="lang-zh">AIF社區大獎</span></h3>
+                <p class="text-xs uppercase tracking-widest opacity-50 mb-8"><span class="lang-en">DAO Voted</span><span class="lang-zh">DAO社區投票</span></p>
+                <div class="text-5xl font-bold mb-4 font-serif italic">$200K</div>
+                <p class="text-xs opacity-50 leading-relaxed border-t border-current pt-4 group-hover:border-white/20">
+                    <span class="lang-en">Selected by AIF token holders. True decentralized governance.</span>
+                    <span class="lang-zh">由AIF代幣持有者投票選出，體現去中心化治理理念。</span>
+                </p>
+            </div>
+
+            <div class="p-10 hover:bg-black hover:text-white transition-colors duration-300 group">
+                <span class="text-xs font-mono opacity-50 mb-6 block">03 / Ethics</span>
+                <h3 class="text-2xl font-bold mb-2"><span class="lang-en">Asimov Ethics</span><span class="lang-zh">阿西莫夫倫理獎</span></h3>
+                <p class="text-xs uppercase tracking-widest opacity-50 mb-8"><span class="lang-en">Responsible AI</span><span class="lang-zh">負責任AI應用</span></p>
+                <div class="text-5xl font-bold mb-4 font-serif italic">$200K</div>
+                <p class="text-xs opacity-50 leading-relaxed border-t border-current pt-4 group-hover:border-white/20">
+                    <span class="lang-en">Recognizing excellence in AI ethics thinking and responsible use.</span>
+                    <span class="lang-zh">表彰在AI倫理思考和負責任使用方面表現卓越的作品。</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 pt-8 reveal-text">
+            <div>
+                <h4 class="font-bold text-sm mb-6 pb-2 border-b border-gray-200 uppercase tracking-wider"><span class="lang-en">Technical Innovation</span><span class="lang-zh">技術創新獎項</span></h4>
+                <ul class="space-y-4">
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">Turing Technical Innovation</span><span class="lang-zh">圖靈技術創新獎</span></span>
+                        <span class="font-mono text-gray-400">$150K</span>
+                    </li>
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">Best Visual Generation</span><span class="lang-zh">最佳AI視覺生成獎</span></span>
+                        <span class="font-mono text-gray-400">$100K</span>
+                    </li>
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">Best Audio Design</span><span class="lang-zh">最佳AI音頻設計獎</span></span>
+                        <span class="font-mono text-gray-400">$80K</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm mb-6 pb-2 border-b border-gray-200 uppercase tracking-wider"><span class="lang-en">Artistic Achievement</span><span class="lang-zh">藝術成就獎項</span></h4>
+                <ul class="space-y-4">
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">Collaborative Director</span><span class="lang-zh">人機協同導演大獎</span></span>
+                        <span class="font-mono text-gray-400">$150K</span>
+                    </li>
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">Kuleshov Narrative</span><span class="lang-zh">庫里肖夫程序化敘事獎</span></span>
+                        <span class="font-mono text-gray-400">$100K</span>
+                    </li>
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">Lovelace Synthetic Perf.</span><span class="lang-zh">洛芙萊斯合成表演獎</span></span>
+                        <span class="font-mono text-gray-400">$80K</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="submission" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto bg-gray-50 border-t border-gray-200">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div class="reveal-text">
+                <h2 class="text-3xl font-bold mb-12"><span class="lang-en">Submission Guide</span><span class="lang-zh">參賽指南</span></h2>
+                
+                <div class="relative pl-8 border-l border-gray-200 space-y-12">
+                    <div class="relative">
+                        <span class="absolute -left-[37px] top-1 w-4 h-4 bg-black rounded-full border-2 border-white shadow-md"></span>
+                        <h4 class="text-sm font-bold uppercase mb-1"><span class="lang-en">Early Bird</span><span class="lang-zh">早期提交</span></h4>
+                        <p class="text-xs text-gray-400 font-mono mb-2">Nov 1 - Jan 31</p>
+                        <p class="text-sm text-gray-600"><span class="lang-en">25% Discount on all fees. Priority technical support included.</span><span class="lang-zh">報名費75折優惠，包含優先技術支持。</span></p>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute -left-[37px] top-1 w-4 h-4 bg-gray-300 rounded-full border-2 border-white"></span>
+                        <h4 class="text-sm font-bold uppercase mb-1 text-gray-500"><span class="lang-en">Standard</span><span class="lang-zh">標準提交</span></h4>
+                        <p class="text-xs text-gray-400 font-mono mb-2">Jan 31 - Feb 28</p>
+                        <p class="text-sm text-gray-500"><span class="lang-en">Regular pricing. Standard support.</span><span class="lang-zh">標準價格，正常技術支持。</span></p>
+                    </div>
+                     <div class="relative">
+                        <span class="absolute -left-[37px] top-1 w-4 h-4 bg-gray-200 rounded-full border-2 border-white"></span>
+                        <h4 class="text-sm font-bold uppercase mb-1 text-gray-400"><span class="lang-en">Final Call</span><span class="lang-zh">最後提交</span></h4>
+                        <p class="text-xs text-gray-400 font-mono mb-2">Feb 28 - Mar 31</p>
+                        <p class="text-sm text-gray-400"><span class="lang-en">Late entry fees apply (+50%).</span><span class="lang-zh">報名費增加50%，有限支持。</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-10 rounded-2xl border border-gray-200 shadow-sm reveal-text delay-100">
+                <h3 class="text-lg font-bold mb-8"><span class="lang-en">Entry Fee Structure</span><span class="lang-zh">報名費用結構</span></h3>
+                <table class="w-full text-left text-sm mb-8">
+                    <thead class="text-xs text-gray-400 uppercase font-mono border-b border-gray-100">
+                        <tr>
+                            <th class="pb-4 font-medium"><span class="lang-en">Category</span><span class="lang-zh">類別</span></th>
+                            <th class="pb-4 font-medium"><span class="lang-en">Standard Fee</span><span class="lang-zh">標準費用</span></th>
+                            <th class="pb-4 text-right font-medium"><span class="lang-en">Student</span><span class="lang-zh">學生優惠</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-100">
+                            <td class="py-4 font-medium"><span class="lang-en">Generative Feature</span><span class="lang-zh">生成式長片</span></td>
+                            <td class="py-4 font-mono text-gray-500">$750</td>
+                            <td class="py-4 text-right font-mono text-gray-500">$225</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-4 font-medium"><span class="lang-en">Interactive Work</span><span class="lang-zh">互動敘事作品</span></td>
+                            <td class="py-4 font-mono text-gray-500">$600</td>
+                            <td class="py-4 text-right font-mono text-gray-500">$225</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 font-medium"><span class="lang-en">Short Film</span><span class="lang-zh">短片</span></td>
+                            <td class="py-4 font-mono text-gray-500">$400</td>
+                            <td class="py-4 text-right font-mono text-gray-500">$150</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="bg-gray-50 p-4 rounded text-xs text-gray-500 mb-8">
+                    <strong class="block mb-2 text-black">Discounts / 優惠:</strong>
+                    <ul class="list-disc pl-4 space-y-1">
+                        <li>Developing Countries: 50% Off (發展中國家 50% 減免)</li>
+                        <li>AIF Token Payment: Extra 5-30% Off (代幣支付 額外折扣)</li>
+                    </ul>
+                </div>
+
+                <button class="w-full bg-black text-white py-4 rounded-full font-bold academy-btn">
+                    <span class="lang-en">Submit Application</span><span class="lang-zh">提交申請</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="ecosystem" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto">
+        <div class="mb-12 reveal-text">
+            <h2 class="text-3xl font-bold mb-2"><span class="lang-en">The Ecosystem</span><span class="lang-zh">生態系統</span></h2>
+            <p class="text-gray-500 font-mono text-sm">9+1 Infrastructure Architecture</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 reveal-text">
+            <div class="col-span-2 row-span-2 bg-black text-white p-8 rounded-2xl flex flex-col justify-between group cursor-pointer relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="inline-block px-2 py-1 bg-white/20 rounded text-[10px] font-bold uppercase mb-4">Core Hub</span>
+                    <h3 class="text-4xl font-serif italic mb-4">AIF.Center</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-xs">
+                        <span class="lang-en">The central platform for global submission and management. Featuring strict AI-native recognition standards.</span>
+                        <span class="lang-zh">全球作品征集與管理的核心平台。配備嚴格的AI原生認定標準。</span>
+                    </p>
+                </div>
+                <div class="relative z-10 w-10 h-10 rounded-full bg-white text-black flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
+                    &nearr;
+                </div>
+                <div class="absolute right-0 bottom-0 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+            </div>
+
+            <div class="bg-white border border-gray-200 p-6 rounded-xl hover:border-black transition-colors group">
+                <div class="text-2xl mb-4 grayscale group-hover:grayscale-0 transition-all">🏦</div>
+                <h4 class="font-bold text-sm mb-1">AIF.Market</h4>
+                <p class="text-[10px] text-gray-400">Financing</p>
+            </div>
+             <div class="bg-white border border-gray-200 p-6 rounded-xl hover:border-black transition-colors group">
+                <div class="text-2xl mb-4 grayscale group-hover:grayscale-0 transition-all">🎓</div>
+                <h4 class="font-bold text-sm mb-1">AI Academy</h4>
+                 <p class="text-[10px] text-gray-400">Education</p>
+            </div>
+             <div class="bg-white border border-gray-200 p-6 rounded-xl hover:border-black transition-colors group">
+                <div class="text-2xl mb-4 grayscale group-hover:grayscale-0 transition-all">📺</div>
+                <h4 class="font-bold text-sm mb-1">404.world</h4>
+                 <p class="text-[10px] text-gray-400">Streaming</p>
+            </div>
+            
+             <div class="bg-white border border-gray-200 p-6 rounded-xl hover:border-black transition-colors group">
+                <div class="text-2xl mb-4 grayscale group-hover:grayscale-0 transition-all">🌟</div>
+                <h4 class="font-bold text-sm mb-1">StarOS</h4>
+                 <p class="text-[10px] text-gray-400">Digital Human</p>
+            </div>
+             <div class="bg-white border border-gray-200 p-6 rounded-xl hover:border-black transition-colors group">
+                <div class="text-2xl mb-4 grayscale group-hover:grayscale-0 transition-all">📜</div>
+                <h4 class="font-bold text-sm mb-1">HKAIFC</h4>
+                 <p class="text-[10px] text-gray-400">Standards</p>
+            </div>
+             <div class="bg-white border border-gray-200 p-6 rounded-xl hover:border-black transition-colors group">
+                <div class="text-2xl mb-4 grayscale group-hover:grayscale-0 transition-all">👓</div>
+                <h4 class="font-bold text-sm mb-1">404GLASS</h4>
+                 <p class="text-[10px] text-gray-400">Hardware</p>
+            </div>
+            <div class="bg-white border border-gray-200 p-6 rounded-xl hover:border-black transition-colors group">
+                <div class="text-2xl mb-4 grayscale group-hover:grayscale-0 transition-all">💱</div>
+                <h4 class="font-bold text-sm mb-1">Exchange</h4>
+                 <p class="text-[10px] text-gray-400">Liquidity</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto border-t border-gray-200 bg-gray-50">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div class="reveal-text">
+                <h2 class="text-3xl font-bold mb-6"><span class="lang-en">AIF Token Economy</span><span class="lang-zh">AIF代幣經濟模型</span></h2>
+                <p class="text-gray-600 leading-relaxed mb-8 text-sm">
+                    <span class="lang-en">AIF token is the fuel of the ecosystem, enabling entry fees, governance voting, course payments, and NFT trading. Designed with a deflationary model to capture value from the success of AI artworks.</span>
+                    <span class="lang-zh">AIF代幣是生態系統的燃料，用於支付參賽費用、治理投票、課程費用和NFT交易。採用通縮模型設計，從AI藝術作品的成功中捕獲價值。</span>
+                </p>
+                <ul class="space-y-3 text-sm font-medium">
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-black rounded-full"></span><span class="lang-en">Deflationary Model (Buyback & Burn)</span><span class="lang-zh">通縮模型 (回購與銷毀)</span></li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-black rounded-full"></span><span class="lang-en">Staking for Governance Rights</span><span class="lang-zh">質押獲取DAO治理權</span></li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-black rounded-full"></span><span class="lang-en">Asset Financialization</span><span class="lang-zh">創意資產金融化</span></li>
+                </ul>
+            </div>
+            
+            <div class="bg-white border border-gray-200 p-8 rounded-xl reveal-text delay-100">
+                <h3 class="text-xs font-bold uppercase tracking-widest mb-6 text-center text-gray-400">Value Flywheel</h3>
+                <div class="grid grid-cols-2 gap-4 text-center">
+                    <div class="p-4 border border-gray-100 rounded hover:border-black transition-colors">
+                        <div class="text-lg font-bold mb-1">1. Fuel</div>
+                        <div class="text-[10px] text-gray-400">Capital Injection</div>
+                    </div>
+                    <div class="p-4 border border-gray-100 rounded hover:border-black transition-colors">
+                        <div class="text-lg font-bold mb-1">2. Engine</div>
+                        <div class="text-[10px] text-gray-400">Value Discovery</div>
+                    </div>
+                    <div class="p-4 border border-gray-100 rounded hover:border-black transition-colors">
+                        <div class="text-lg font-bold mb-1">4. Cycle</div>
+                        <div class="text-[10px] text-gray-400">Resource Attraction</div>
+                    </div>
+                    <div class="p-4 border border-gray-100 rounded hover:border-black transition-colors">
+                        <div class="text-lg font-bold mb-1">3. Output</div>
+                        <div class="text-[10px] text-gray-400">Token Appreciation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto">
+        <div class="mb-20 reveal-text">
+             <h2 class="text-3xl font-bold mb-12 text-center"><span class="lang-en">Innovation Exhibition</span><span class="lang-zh">創新展映體驗</span></h2>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6 border border-gray-200 rounded-xl hover:bg-black hover:text-white transition-all duration-300">
+                    <h3 class="text-lg font-bold mb-3"><span class="lang-en">Neural Responsive Hall</span><span class="lang-zh">神經響應式展映廳</span></h3>
+                    <p class="text-xs leading-relaxed opacity-70"><span class="lang-en">World's first BCI viewing experience. Content adjusts to audience collective consciousness.</span><span class="lang-zh">全球首創腦機接口觀影。電影內容根據觀眾集體意識狀態實時動態調整。</span></p>
+                </div>
+                <div class="p-6 border border-gray-200 rounded-xl hover:bg-black hover:text-white transition-all duration-300">
+                    <h3 class="text-lg font-bold mb-3"><span class="lang-en">Virtual Production Stage</span><span class="lang-zh">虛擬制片舞台秀</span></h3>
+                    <p class="text-xs leading-relaxed opacity-70"><span class="lang-en">Real-time AI scene generation and digital character creation showcase.</span><span class="lang-zh">實時展示AI場景生成與數字角色創作過程。</span></p>
+                </div>
+                <div class="p-6 border border-gray-200 rounded-xl hover:bg-black hover:text-white transition-all duration-300">
+                    <h3 class="text-lg font-bold mb-3"><span class="lang-en">Immersive Theater</span><span class="lang-zh">沉浸式交互劇場</span></h3>
+                    <p class="text-xs leading-relaxed opacity-70"><span class="lang-en">360-degree projection where audience moves freely within the narrative world.</span><span class="lang-zh">360度環繞投影，觀眾可在虛擬世界中自由移動和互動。</span></p>
+                </div>
+             </div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto reveal-text">
+            <h3 class="text-2xl font-bold mb-12 text-center"><span class="lang-en">Festival Schedule</span><span class="lang-zh">日程安排</span></h3>
+            <div class="relative border-l border-gray-200 space-y-10 ml-4">
+                
+                <div class="pl-10 relative group">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-black rounded-full ring-4 ring-white"></div>
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                         <h4 class="text-xs font-bold uppercase tracking-widest text-black">Day 01</h4>
+                         <span class="text-xs text-gray-400">May 1, 2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2"><span class="lang-en">Opening Ceremony</span><span class="lang-zh">開幕盛典</span></h3>
+                    <p class="text-sm text-gray-500"><span class="lang-en">Global premiere of 3 heavyweight AI-native films.</span><span class="lang-zh">三部重量級AI原生電影全球首映。</span></p>
+                </div>
+
+                <div class="pl-10 relative group">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-gray-300 rounded-full ring-4 ring-white"></div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Day 02 - 04</h4>
+                    <h3 class="text-xl font-bold mb-2"><span class="lang-en">Competition Screenings</span><span class="lang-zh">競賽單元展映</span></h3>
+                    <p class="text-sm text-gray-500"><span class="lang-en">Neural responsive screenings & virtual production stage shows.</span><span class="lang-zh">神經響應式展映、虛擬制片舞台秀等創新體驗。</span></p>
+                </div>
+
+                <div class="pl-10 relative group">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-gray-300 rounded-full ring-4 ring-white"></div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Day 05</h4>
+                    <h3 class="text-xl font-bold mb-2"><span class="lang-en">AI Industry Summit</span><span class="lang-zh">AI產業峰會</span></h3>
+                    <p class="text-sm text-gray-500"><span class="lang-en">Release of "Hong Kong AI Film & TV Development White Paper".</span><span class="lang-zh">發布《香港AI影視發展白皮書》。</span></p>
+                </div>
+
+                <div class="pl-10 relative group">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-black rounded-full ring-4 ring-white"></div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-black mb-1">Day 07</h4>
+                    <h3 class="text-xl font-bold mb-2"><span class="lang-en">Awards & Closing</span><span class="lang-zh">頒獎典禮</span></h3>
+                    <p class="text-sm text-gray-500"><span class="lang-en">Revealing the Unicorn Gold Award winner. Closing banquet.</span><span class="lang-zh">揭曉獨角獸金獎得主，閉幕晚宴。</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto bg-gray-50 border-t border-gray-200">
+        <h2 class="text-3xl font-bold mb-16 text-center reveal-text"><span class="lang-en">Why Us?</span><span class="lang-zh">先進性對比</span></h2>
+        
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl border border-gray-200 overflow-hidden reveal-text">
+            <div class="grid grid-cols-3 bg-gray-100 border-b border-gray-200 p-6 text-xs font-bold uppercase tracking-widest">
+                <div class="text-gray-500"><span class="lang-en">Aspect</span><span class="lang-zh">維度</span></div>
+                <div class="text-gray-500"><span class="lang-en">Traditional Festival</span><span class="lang-zh">傳統電影節</span></div>
+                <div class="text-black">HKAIIFF</div>
+            </div>
+            
+            <div class="divide-y divide-gray-100">
+                <div class="grid grid-cols-3 p-6 items-center hover:bg-gray-50">
+                    <div class="text-gray-400 font-medium text-sm"><span class="lang-en">Creative Paradigm</span><span class="lang-zh">創作範式</span></div>
+                    <div class="text-gray-500 text-sm"><span class="lang-en">Auteur Theory</span><span class="lang-zh">作者論</span></div>
+                    <div class="text-black font-bold text-sm"><span class="lang-en">Conductor Theory</span><span class="lang-zh">指揮家論</span></div>
+                </div>
+                <div class="grid grid-cols-3 p-6 items-center hover:bg-gray-50">
+                    <div class="text-gray-400 font-medium text-sm"><span class="lang-en">Technology Role</span><span class="lang-zh">技術定位</span></div>
+                    <div class="text-gray-500 text-sm"><span class="lang-en">Auxiliary Tool</span><span class="lang-zh">輔助工具</span></div>
+                    <div class="text-black font-bold text-sm"><span class="lang-en">Creative Core</span><span class="lang-zh">創作核心</span></div>
+                </div>
+                <div class="grid grid-cols-3 p-6 items-center hover:bg-gray-50">
+                    <div class="text-gray-400 font-medium text-sm"><span class="lang-en">Audience Role</span><span class="lang-zh">觀眾角色</span></div>
+                    <div class="text-gray-500 text-sm"><span class="lang-en">Passive Viewer</span><span class="lang-zh">被動觀看者</span></div>
+                    <div class="text-black font-bold text-sm"><span class="lang-en">Active Co-creator</span><span class="lang-zh">主動共創者</span></div>
+                </div>
+                <div class="grid grid-cols-3 p-6 items-center hover:bg-gray-50">
+                    <div class="text-gray-400 font-medium text-sm"><span class="lang-en">Value System</span><span class="lang-zh">價值分配</span></div>
+                    <div class="text-gray-500 text-sm"><span class="lang-en">Centralized</span><span class="lang-zh">精英集中</span></div>
+                    <div class="text-black font-bold text-sm"><span class="lang-en">Decentralized</span><span class="lang-zh">去中心化</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-20 flex flex-col md:flex-row justify-between items-end pt-20 border-t border-gray-200 reveal-text">
+            <div>
+                <h3 class="text-2xl font-bold mb-2"><span class="lang-en">The Venue</span><span class="lang-zh">香港相見</span></h3>
+                <p class="text-lg text-gray-800 mb-2">Hong Kong Convention and Exhibition Centre</p>
+                <p class="text-gray-500 text-sm max-w-md">
+                    <span class="lang-en">Located on the north shore of Wan Chai. A global hub connecting East and West.</span>
+                    <span class="lang-zh">位於香港灣仔北岸。連接東西方的全球樞紐。</span>
+                </p>
+            </div>
+            <div class="text-right mt-8 md:mt-0 font-mono text-sm text-gray-500">
+                <p>May 1-7, 2026</p>
+                <p>1 Expo Drive, Wan Chai, HK</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white pt-24 pb-8 px-6 md:px-8 mt-24">
+        <div class="max-w-[1920px] mx-auto">
+            <div class="flex flex-col items-center justify-center mb-24 text-center reveal-text">
+                <h2 class="text-[10vw] font-bold tracking-tighter leading-none mb-8">
+                    Make History.
+                </h2>
+                <a href="#submission" class="inline-block px-12 py-5 bg-white text-black rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300">
+                    <span class="lang-en">Submit Work</span><span class="lang-zh">提交作品</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-t border-white/20 pt-12">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="#" class="text-2xl font-bold block mb-4">HKAIIFF.</a>
+                    <p class="text-gray-400 text-sm max-w-xs leading-relaxed">
+                        <span class="lang-en">World's first AI-native film festival, redefining cinematic art and evaluation standards in the AI era.</span>
+                        <span class="lang-zh">全球首個AI原生電影節，重新定義AI時代的電影藝術與評價標準。</span>
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider mb-4 text-gray-500">Links</h4>
+                    <ul class="space-y-3 text-sm font-medium text-gray-300">
+                        <li><a href="http://token.aif.market" class="hover:text-white">AIF Token</a></li>
+                        <li><a href="#" class="hover:text-white">Whitepaper</a></li>
+                        <li><a href="#" class="hover:text-white">Press Kit</a></li>
+                        <li><a href="mailto:info@hkaiiff.org" class="hover:text-white">info@hkaiiff.org</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider mb-4 text-gray-500">Connect</h4>
+                    <ul class="space-y-3 text-sm font-medium text-gray-300">
+                        <li><a href="#" class="hover:text-white">Twitter / X</a></li>
+                        <li><a href="#" class="hover:text-white">Instagram</a></li>
+                        <li><a href="#" class="hover:text-white">Discord</a></li>
+                        <li><a href="#" class="hover:text-white">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-20 flex justify-between items-end text-[10px] uppercase text-gray-500 font-mono">
+                <p>&copy; 2026 HKAIIFF. All Rights Reserved.</p>
+                <p>Designed with Awwwards Aesthetics</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        let currentSlide = 1;
-        const totalSlides = 16;
+        // Language Toggle
+        function toggleLanguage() {
+            const body = document.body;
+            const currentLang = body.getAttribute('data-lang');
+            const newLang = currentLang === 'en' ? 'zh' : 'en';
+            body.setAttribute('data-lang', newLang);
+        }
 
-        function showSlide(n) {
-            const slides = document.querySelectorAll('.slide');
-            const navBtns = document.querySelectorAll('.nav-btn');
-            
-            // 确保n在有效范围内
-            if (n > totalSlides) {
-                currentSlide = 1;
-            } else if (n < 1) {
-                currentSlide = totalSlides;
-            } else {
-                currentSlide = n;
-            }
-            
-            // 移除所有幻灯片的active类
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-                slide.classList.remove('fade-in');
+        // Intersection Observer for Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
-            
-            // 移除所有导航按钮的active类
-            navBtns.forEach(btn => btn.classList.remove('active'));
-            
-            // 添加active类和淡入动画到当前幻灯片
-            slides[currentSlide - 1].classList.add('active');
-            slides[currentSlide - 1].classList.add('fade-in');
-            
-            // 添加active类到当前导航按钮
-            navBtns[currentSlide - 1].classList.add('active');
-            
-            // 更新页面标题
-            document.title = `WMC投資簡報 - ${navBtns[currentSlide - 1].textContent} (${currentSlide}/${totalSlides})`;
-        }
+        }, { threshold: 0.1 });
 
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        function previousSlide() {
-            showSlide(currentSlide - 1);
-        }
-
-        function goToSlide(n) {
-            showSlide(n);
-        }
-
-        // 键盘导航
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                e.preventDefault();
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                previousSlide();
-            } else if (e.key === 'Home') {
-                e.preventDefault();
-                goToSlide(1);
-            } else if (e.key === 'End') {
-                e.preventDefault();
-                goToSlide(totalSlides);
-            } else if (e.key >= '1' && e.key <= '9') {
-                const slideNum = parseInt(e.key);
-                if (slideNum <= totalSlides) {
-                    goToSlide(slideNum);
-                }
-            }
-        });
-
-        // 触摸滑动支持
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let touchStartY = 0;
-        let touchEndY = 0;
-
-        document.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-        });
-
-        document.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            touchEndY = e.changedTouches[0].screenY;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diffX = touchStartX - touchEndX;
-            const diffY = Math.abs(touchStartY - touchEndY);
-            
-            // 确保水平滑动比垂直滑动更明显
-            if (Math.abs(diffX) > swipeThreshold && diffY < swipeThreshold * 2) {
-                if (diffX > 0) {
-                    nextSlide(); // 向左滑动 - 下一张
-                } else {
-                    previousSlide(); // 向右滑动 - 上一张
-                }
-            }
-        }
-
-        // 全屏模式切换
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen();
-            } else {
-                document.exitFullscreen();
-            }
-        }
-
-        // F11键切换全屏
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F11') {
-                e.preventDefault();
-                toggleFullscreen();
-            }
-        });
-
-        // 初始化显示第一张幻灯片
-        showSlide(currentSlide);
-
-        // 导航栏滚动支持
-        document.querySelector('.nav-container').addEventListener('wheel', function(e) {
-            e.preventDefault();
-            this.scrollLeft += e.deltaY;
-        });
+        document.querySelectorAll('.reveal-text').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
